@@ -47,4 +47,21 @@ public class Mahasiswa {
     public void updateIpk(double ipkBaru) {
        setIpk(ipkBaru);
     }
+
+    // Soal 3 : Tambahkan method hitungPredikat() untuk menentukan predikat akademik mahasiswa berdasarkan nilai IPK
+    // IPK >= 3.75 ~> Dengan Pujian
+    // IPK >= 3.50 && IPK < 3.75 ~> Sangat Memuaskan
+    // IPK >= 3.00 && IPK < 3.50 ~> Memuaskan
+    // IPK < 3.00 ~> Perlu Perbaikan
+    public String hitungPredikat() {
+        if (ipk >= 3.75) {
+            return "Dengan Pujian";
+        } else if (ipk >= 3.50) {
+            return "Sangat Memuaskan";
+        } else if (ipk >= 3.00) {
+            return "Memuaskan";
+        } else {
+            return "Perlu Perbaikan";
+        }
+    }
 }
