@@ -1,5 +1,9 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
         // Soal 1.4 : Membuat 5 objek Mahasiswa
         Mahasiswa[] daftar = new Mahasiswa[5];
         daftar[0] = new Mahasiswa("Andi Pratama", "2440001", "Teknik Informatika", 3.75);
@@ -14,5 +18,38 @@ public class Main {
             mhs.tampilkanInfo();
             System.out.println();
         }
+
+		// Soal 2.5 : tampilkan input NIM kepada user untuk di isi
+		System.out.print("Masukkan NIM mahasiswa yang ingin diupdate: ");
+        String nimInput = scanner.nextLine();
+ 
+		// Soal 2.5 : tampilkan input IPK kepada user untuk di isi
+        System.out.print("Masukkan IPK baru: ");
+        double ipkBaru = Double.parseDouble(scanner.nextLine());
+ 
+        // Soal 2.5 : Mencari mahasiswa dengan NIM yang sesuai lalu memperbarui IPK-nya
+        Mahasiswa mahasiswaDiupdate = null;
+        for (Mahasiswa mhs : daftar) {
+			// cek apakah nim yang di input user exist di daftar mahasiswa
+            if (mhs.getNim().equals(nimInput)) {
+                mhs.updateIpk(ipkBaru); // update current ipk mahasiswa menjadi ipk yang di input oleh user
+                mahasiswaDiupdate = mhs; // isi variable mahasiswaDiupdate
+                break; // hentikan proses loop
+            }
+        }
+
+		// Soal 2.5 : jika mahasiswa dengan nim ditemukan dan berhasil di update 
+		if (mahasiswaDiupdate != null) {
+			// Soal 2.5 : Tampilkan informasi mahasiswa beserta status kelulusan
+            System.out.println("Data berhasil diperbarui!\n");
+			System.out.println("=== Data Mahasiswa ===");
+            mahasiswaDiupdate.tampilkanInfo();
+            mahasiswaDiupdate.cekKelulusan();
+        } else {
+			// Soal 2.5 : Jika tidak tampilkan pesan mahasiswa tidak ditemukan
+            System.out.println("Mahasiswa dengan NIM tersebut tidak ditemukan.");
+        }
+		
+        scanner.close();
     }
 }
